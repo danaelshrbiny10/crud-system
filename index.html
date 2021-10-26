@@ -1,0 +1,46 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>crud System</title>
+
+</head>
+
+<body>
+
+    <div class="container border shadow mt-5 p-5">
+        <h1>crud system</h1>
+
+        <div class="form-group">
+            <label for="productNameInput">productName : </label>
+            <input class="form-control" type="text" id="productNameInput">
+        </div>
+
+        <div class="form-group">
+            <label for="productpriceInput">productprice : </label>
+            <input class="form-control" type="number" id="productpriceInput">
+        </div>
+
+        <div class="form-group">
+            <label for="productCategoryInput">productCategory : </label>
+            <input class="form-control" type="text" id="productCategoryInput">
+        </div>
+
+        <div class="form-group">
+            <label for="productDescriptionInput">productDescription : </label>
+            <textarea class="form-control" type="text" id="productDescriptionInput"></textarea>
+        </div>
+
+
+        <button onclick=" addProduct();" class="btn btn-outline-danger">add Product</button>
+    </div>
+
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
