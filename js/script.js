@@ -16,8 +16,9 @@ function addProduct() {
     };
     productsContainer.push(product);
     clearForm();
+    displayProduct();
     console.log(productsContainer);
-}
+};
 
 
 function clearForm() {
@@ -26,4 +27,23 @@ function clearForm() {
     productCategoryInput.value = '';
     productDescriptionInput.value = '';
 
-}
+};
+
+function displayProduct() {
+
+    var cartoona = '';
+    for (var i = 0; i < productsContainer.length; i++) {
+
+        cartoona += `<tr>
+            <td>` + i + `</td>
+            <td>` + productsContainer[i].name + `</td>
+            <td>` + productsContainer[i].price + `</td>
+            <td>` + productsContainer[i].category + `</td>
+            <td>` + productsContainer[i].description + `</td>
+            <td><button class="btn btn-outline-info"> update</button></td>
+            <td><button class="btn btn-outline-danger"> delete</button></td>
+            </tr>`
+    }
+    document.getElementById('display').innerHTML = cartoona;
+
+};
