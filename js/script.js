@@ -4,6 +4,8 @@ var productCategoryInput = document.getElementById('productCategoryInput');
 var productDescriptionInput = document.getElementById('productDescriptionInput');
 
 
+var productsContainer = [];
+
 function addProduct() {
     var product = {
 
@@ -12,6 +14,16 @@ function addProduct() {
         category: productCategoryInput.value,
         description: productDescriptionInput.value,
     };
+    productsContainer.push(product);
+    clearForm();
+    console.log(productsContainer);
+}
 
-    console.log(product);
+
+function clearForm() {
+    productNameInput.value = '';
+    productpriceInput.value = '';
+    productCategoryInput.value = '';
+    productDescriptionInput.value = '';
+
 }
