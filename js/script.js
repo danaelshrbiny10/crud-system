@@ -4,7 +4,17 @@ var productCategoryInput = document.getElementById('productCategoryInput');
 var productDescriptionInput = document.getElementById('productDescriptionInput');
 
 
-var productsContainer = [];
+
+if (localStorage.getItem("products") == null) {
+    var productsContainer = [];
+} else {
+    productsContainer = json.parse(localStorage.getItem("products"));
+    displayProduct();
+};
+
+
+
+
 
 function addProduct() {
     var product = {
@@ -15,6 +25,7 @@ function addProduct() {
         description: productDescriptionInput.value,
     };
     productsContainer.push(product);
+    localStorage.setItem("products", JSON.stringify(productsContainer));
     clearForm();
     displayProduct();
     console.log(productsContainer);
