@@ -4,11 +4,11 @@ var productCategoryInput = document.getElementById('productCategoryInput');
 var productDescriptionInput = document.getElementById('productDescriptionInput');
 
 
-
+var productsContainer;
 if (localStorage.getItem("products") == null) {
-    var productsContainer = [];
+    productsContainer = [];
 } else {
-    productsContainer = json.parse(localStorage.getItem("products"));
+    productsContainer = JSON.parse(localStorage.getItem("products"));
     displayProduct();
 };
 
