@@ -52,9 +52,17 @@ function displayProduct() {
             <td>` + productsContainer[i].category + `</td>
             <td>` + productsContainer[i].description + `</td>
             <td><button class="btn btn-outline-info"> update</button></td>
-            <td><button class="btn btn-outline-danger"> delete</button></td>
+            <td><button onclick="deleteProducts(` + i + `)" class="btn btn-outline-danger"> delete</button></td>
             </tr>`
     }
     document.getElementById('display').innerHTML = cartoona;
 
+};
+
+
+function deleteProducts(productIndex) {
+
+    productsContainer.splice(productIndex, 1);
+    localStorage.setItem("products", JSON.stringify(productsContainer));
+    displayProduct()
 };
