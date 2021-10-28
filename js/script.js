@@ -2,7 +2,7 @@ var productNameInput = document.getElementById('productNameInput');
 var productpriceInput = document.getElementById('productpriceInput');
 var productCategoryInput = document.getElementById('productCategoryInput');
 var productDescriptionInput = document.getElementById('productDescriptionInput');
-
+var addProduct = document.getElementById('products');
 
 var productsContainer;
 if (localStorage.getItem("products") == null) {
@@ -51,7 +51,7 @@ function displayProduct() {
             <td>` + productsContainer[i].price + `</td>
             <td>` + productsContainer[i].category + `</td>
             <td>` + productsContainer[i].description + `</td>
-            <td><button class="btn btn-outline-info"> update</button></td>
+            <td><button onclick=' updateProducts(` + i + `);' class="btn btn-outline-info"> update</button></td>
             <td><button onclick="deleteProducts(` + i + `)" class="btn btn-outline-danger"> delete</button></td>
             </tr>`;
     }
@@ -81,7 +81,7 @@ function searcProducts(searchTearm) {
             <td>` + productsContainer[i].price + `</td>
             <td>` + productsContainer[i].category + `</td>
             <td>` + productsContainer[i].description + `</td>
-            <td><button class="btn btn-outline-info"> update</button></td>
+            <td><button  onclick="updateProducts(` + i + `);"class="btn btn-outline-warning"> update</button></td>
             <td><button onclick="deleteProducts(` + i + `)" class="btn btn-outline-danger"> delete</button></td>
             </tr>`;
         } else {
@@ -89,5 +89,26 @@ function searcProducts(searchTearm) {
             console.log('notFound');
         }
     }
-    document.getElementById('display').innerHTML = cartoona;
-}
+    document.getElementById('display').innerHTML = cartoona;;
+};
+
+function updateProducts(productsIndex) {
+    productNameInput.value = productsContainer[productsIndex].name;
+    productpriceInput.value = productsContainer[productsIndex].price;
+    productCategoryInput.value = productsContainer[productsIndex].category;
+    productDescriptionInput.value = productsContainer[productsIndex].description;
+
+    addProduct.innerHTML = "update";
+
+    addProduct.onclick = function() {
+        productsContainer[productsIndex].name = productNameInput.value;
+        productsContainer[productsIndex].price = productpriceInput.value;
+        productsContainer[productsIndex].category = productCategoryInput.value;
+        productsContainer[productsIndex].description = productDescriptionInput.value;
+        localStorage.setItem("products", JSON.stringify(productsContainer));
+        displayProduct();
+        addProduct.innerHTML = "add Product";
+        addProduct.onclick = "add Product";
+        clearForm();
+    }
+};
