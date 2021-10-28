@@ -53,7 +53,7 @@ function displayProduct() {
             <td>` + productsContainer[i].description + `</td>
             <td><button class="btn btn-outline-info"> update</button></td>
             <td><button onclick="deleteProducts(` + i + `)" class="btn btn-outline-danger"> delete</button></td>
-            </tr>`
+            </tr>`;
     }
     document.getElementById('display').innerHTML = cartoona;
 
@@ -66,3 +66,28 @@ function deleteProducts(productIndex) {
     localStorage.setItem("products", JSON.stringify(productsContainer));
     displayProduct()
 };
+
+function searcProducts(searchTearm) {
+
+    var cartoona = '';
+    for (var i = 0; i < productsContainer.length; i++) {
+        if (productsContainer[i].name.toLowerCase().includes(searchTearm.toLowerCase()) == true ||
+            productsContainer[i].category.toLowerCase().includes(searchTearm.toLowerCase()) == true)
+
+        {
+            cartoona += `<tr>
+            <td>` + i + `</td>
+            <td>` + productsContainer[i].name + `</td>
+            <td>` + productsContainer[i].price + `</td>
+            <td>` + productsContainer[i].category + `</td>
+            <td>` + productsContainer[i].description + `</td>
+            <td><button class="btn btn-outline-info"> update</button></td>
+            <td><button onclick="deleteProducts(` + i + `)" class="btn btn-outline-danger"> delete</button></td>
+            </tr>`;
+        } else {
+
+            console.log('notFound');
+        }
+    }
+    document.getElementById('display').innerHTML = cartoona;
+}
