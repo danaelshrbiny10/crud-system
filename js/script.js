@@ -3,7 +3,7 @@ var productpriceInput = document.getElementById('productpriceInput');
 var productCategoryInput = document.getElementById('productCategoryInput');
 var productDescriptionInput = document.getElementById('productDescriptionInput');
 var addProduct = document.getElementById('products');
-
+var userNameAlert = document.getElementById('userNameAlert');
 var productsContainer;
 if (localStorage.getItem("products") == null) {
     productsContainer = [];
@@ -13,23 +13,45 @@ if (localStorage.getItem("products") == null) {
 };
 
 
+function validateProductName() {
 
+    var regux = /^[A-Z][a-z]{3,8}$/;
+    if (regux.test(productNameInput.value) == true) {
+        // console.log("valid");
+        productNameInput.classList.add("is-valid");
+        productNameInput.classList.remove("is-invalid");
+        userNameAlert.classList.replace('d-block', "d-none");
 
+        return true;
+    } else {
+        // console.log("inValid");
+        userNameAlert.classList.replace('d-none', "d-block");
+        productNameInput.classList.add("is-invalid");
+        productNameInput.classList.remove("is-valid");
+
+        return false;
+    }
+}
+
+productNameInput.addEventListener("keyup", validateProductName);
 
 function addProduct() {
-    var product = {
 
-        name: productNameInput.value,
-        price: productpriceInput.value,
-        category: productCategoryInput.value,
-        description: productDescriptionInput.value,
-    };
-    productsContainer.push(product);
-    localStorage.setItem("products", JSON.stringify(productsContainer));
-    clearForm();
-    displayProduct();
-    console.log(productsContainer);
-};
+    if (validateProductName() == true) {
+        var product = {
+
+            name: productNameInput.value,
+            price: productpriceInput.value,
+            category: productCategoryInput.value,
+            description: productDescriptionInput.value,
+        }
+        productsContainer.push(product);
+        localStorage.setItem("products", JSON.stringify(productsContainer));
+        displayProduct();
+        clearForm();
+        // console.log(productsContainer);
+    }
+}
 
 
 function clearForm() {
